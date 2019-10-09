@@ -1,0 +1,23 @@
+{
+  "name": "instructortest",
+  "version": "1.0.0",
+  "description": "Back end part for the application PhotoGallery",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \" npm run server \" \"npm run client\""
+  },
+  "author": "Anis Mell",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.2.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.2.0",
+    "mongoose": "^5.7.4"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "nodemon": "^1.19.3"
+  }
+}
