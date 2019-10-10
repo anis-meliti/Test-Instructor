@@ -7,14 +7,12 @@ import {
 } from '../constants/actions-types';
 
 const initialState = {
-  users: [
-    {
-      name: '',
-      surName: '',
-      birthYear: '',
-      birthPlace: ''
-    }
-  ],
+  users: {
+    name: '',
+    surName: '',
+    birthYear: '',
+    birthPlace: ''
+  },
   loading: true
 };
 
@@ -42,12 +40,7 @@ export default (state = initialState, action) => {
         ],
         loading: false
       };
-    case ADD_USER:
-      return {
-        ...state,
-        users: payload,
-        loading: false
-      };
+
     default:
       return state;
   }

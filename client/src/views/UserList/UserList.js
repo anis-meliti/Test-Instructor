@@ -1,16 +1,16 @@
-import React, { Fragment, useState } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import React, { Fragment, useState, useEffect } from 'react';
+import { Container, Row, Col, Spinner } from 'reactstrap';
 import { useSelector } from 'react-redux';
-import './UserList.css';
 
+import './UserList.css';
 import User from '../../components/User/User';
-import { addUser } from '../../js/actions/User';
 import AddUser from '../../components/Modals/AddUser';
 
 const UserList = () => {
   const [show, setshow] = useState(false);
 
   const users = useSelector(state => state.user.users);
+  const loading = useSelector(state => state.user.loading);
   return (
     <Container>
       <Row>
@@ -57,18 +57,22 @@ const UserList = () => {
         </Col>
       </Row>
 
-      {users.map((user, i) => (
-        <Fragment key={i}>
-          <hr />{' '}
-          <User
-            name={user.name}
-            surName={user.surName}
-            birthPlace={user.birthPlace}
-            birthYear={user.birthYear}
-          />
-          <hr />
-        </Fragment>
-      ))}
+      {loading ? (
+        <Spinner color='primary' />
+      ) : (
+        users.map((user, i) => (
+          <Fragment key={i}>
+            <hr />{' '}
+            <User
+              name={user.name}
+              surName={user.surName}
+              birthPlace={user.birthPlace}
+              birthYear={user.birthYear}
+            />
+            <hr />
+          </Fragment>
+        ))
+      )}
 
       <AddUser isOpen={show} toggle={() => setshow(false)} />
     </Container>

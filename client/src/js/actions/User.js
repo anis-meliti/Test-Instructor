@@ -38,11 +38,9 @@ export const addUser = ({
     birthPlace
   });
   try {
-    const res = await axios.post('/user', body, config);
-    dispatch({
-      type: ADD_USER,
-      payload: res.data
-    });
+    const res = await axios.post('/users', body, config);
+    console.log('TCL:  payload: res.data', res.data);
+
     dispatch(getUsers());
   } catch (error) {
     console.error(error);

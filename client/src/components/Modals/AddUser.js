@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, FormGroup, Input, Modal } from 'reactstrap';
+
+import { addUser } from '../../js/actions/User';
 
 const AddUser = ({ isOpen, toggle }) => {
   const [userInfo, setuserInfo] = useState({
@@ -15,6 +18,12 @@ const AddUser = ({ isOpen, toggle }) => {
     });
     console.log('TCL: AddUser -> userInfo', userInfo);
   };
+  const dispatch = useDispatch();
+  const addNewUser = () => {
+    dispatch(addUser(userInfo));
+    toggle();
+  };
+
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
       <div className='modal-header'>
@@ -78,7 +87,7 @@ const AddUser = ({ isOpen, toggle }) => {
           <Button
             className='btn-link'
             color='default'
-            //   onClick={() => setTooltipsAndPopovers(false)}
+            onClick={() => addNewUser()}
             type='button'
           >
             Add New
