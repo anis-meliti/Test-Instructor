@@ -1,8 +1,15 @@
-import React from 'react';
-import { Row } from 'reactstrap';
+import React, { useEffect } from 'react';
+import { Row, Col } from 'reactstrap';
+
+import store from '../../js/store/index';
+import { getgallery } from '../../js/actions/Gallery';
 import Photo from '../../components/Photo/Photo';
 
-const GalleryPhoto = () => {
+const GalleryPhoto = ({ match }) => {
+  //   const userId = match.param.id;
+  //   useEffect(() => {
+  //     store.dispatch(getgallery(userId));
+  //   });
   const photos = [
     {
       title: 'Picture 1',
@@ -62,13 +69,31 @@ const GalleryPhoto = () => {
     }
   ];
   return (
-    <Row>
-      {photos.map(photo => (
-        <>
-          <Photo title={photo.title} path={photo.src} />
-        </>
-      ))}
-    </Row>
+    <>
+      <Row>
+        <Col className='md-form my-3'>
+          <Row>
+            <Col md={6}>
+              <i className='icon-search'></i>
+              <input
+                className='form-control'
+                type='text'
+                placeholder='Search'
+                aria-label='Search'
+              />
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+
+      <Row>
+        {photos.map(photo => (
+          <>
+            <Photo title={photo.title} path={photo.src} />
+          </>
+        ))}
+      </Row>
+    </>
   );
 };
 

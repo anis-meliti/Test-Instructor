@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import AlertModal from '../Modals/AlertModal';
 
@@ -12,7 +13,6 @@ const User = ({ id, name, surName, birthPlace, birthYear }) => {
   //   show: false,
   //   id: ''
   // });
-  const accessGallery = () => {};
 
   const editUser = e => {
     // setedit({ show: true, id: e.target.id });
@@ -36,13 +36,16 @@ const User = ({ id, name, surName, birthPlace, birthYear }) => {
         <Col>
           <Row>
             <Col>
-              <img
-                style={{ cursor: 'pointer' }}
-                className='fa'
-                src={require('../../assets/icons/photos.svg')}
-                onClick={() => accessGallery()}
-                alt='Gallery'
-              />
+              <Link to={`/gallery/`}>
+                <img
+                  id={id}
+                  style={{ cursor: 'pointer' }}
+                  className='fa'
+                  src={require('../../assets/icons/photos.svg')}
+                  // onClick={e => accessGallery(e)}
+                  alt='Gallery'
+                />
+              </Link>
             </Col>
             <Col>
               <img
