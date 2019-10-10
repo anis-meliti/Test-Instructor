@@ -13,7 +13,12 @@ const App = () => {
   const loading = useSelector(state => state.user.loading);
 
   return loading ? (
-    <Spinner color='primary' />
+    <Spinner
+      color='primary'
+      style={{ width: '3rem', height: '3rem', display: 'flex' }}
+      type='grow'
+      className='mx-auto  my-auto'
+    />
   ) : (
     <Container className='card ml-auto mr-auto'>
       <UserList />

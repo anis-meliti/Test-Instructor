@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'reactstrap';
 
-import { deleteUser } from '../../js/actions/User';
 import AlertModal from '../Modals/AlertModal';
 
 const User = ({ id, name, surName, birthPlace, birthYear }) => {
@@ -9,8 +8,16 @@ const User = ({ id, name, surName, birthPlace, birthYear }) => {
     show: false,
     id: ''
   });
+  // const [edit, setedit] = useState({
+  //   show: false,
+  //   id: ''
+  // });
   const accessGallery = () => {};
-  const editUser = () => {};
+
+  const editUser = e => {
+    // setedit({ show: true, id: e.target.id });
+    // console.log('TCL: accessGallery -> e.target.id', e.target.id);
+  };
   const delUser = e => {
     console.log('TCL: editUser -> id', e.target.id);
     setdel({
@@ -34,15 +41,16 @@ const User = ({ id, name, surName, birthPlace, birthYear }) => {
                 className='fa'
                 src={require('../../assets/icons/photos.svg')}
                 onClick={() => accessGallery()}
-                alt='photo'
+                alt='Gallery'
               />
             </Col>
             <Col>
               <img
+                id={id}
                 style={{ cursor: 'pointer' }}
                 className='fa'
                 src={require('../../assets/icons/edit.svg')}
-                onClick={() => editUser()}
+                onClick={e => editUser(e)}
                 alt='edit'
               />
             </Col>
@@ -65,6 +73,11 @@ const User = ({ id, name, surName, birthPlace, birthYear }) => {
         toggle={() => setdel({ show: false, id: '' })}
         id={del.id}
       />
+      {/* <AddUser
+        isOpen={edit.show}
+        toggle={() => setedit({ show: false, id: '' })}
+        alterUser={edit.id}
+      /> */}
     </>
   );
 };

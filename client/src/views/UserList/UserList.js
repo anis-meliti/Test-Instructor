@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Container, Row, Col, Spinner } from 'reactstrap';
 import { useSelector } from 'react-redux';
 

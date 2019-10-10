@@ -1,10 +1,5 @@
 import axios from 'axios';
-import {
-  LOAD_USERS,
-  ADD_USER,
-  EDIT_USER,
-  DELETE_USER
-} from '../constants/actions-types';
+import { LOAD_USERS } from '../constants/actions-types';
 
 //  GET the current user Profile
 

@@ -1,10 +1,4 @@
-import {
-  LOAD_USERS,
-  LOAD_FAIL,
-  ADD_USER,
-  EDIT_USER,
-  DELETE_USER
-} from '../constants/actions-types';
+import { LOAD_USERS, LOAD_FAIL } from '../constants/actions-types';
 
 const initialState = {
   users: {
