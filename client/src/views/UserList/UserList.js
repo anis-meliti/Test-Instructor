@@ -1,11 +1,15 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { useSelector } from 'react-redux';
 import './UserList.css';
 
 import User from '../../components/User/User';
+import { addUser } from '../../js/actions/User';
+import AddUser from '../../components/Modals/AddUser';
 
 const UserList = () => {
+  const [show, setshow] = useState(false);
+
   const users = useSelector(state => state.user.users);
   return (
     <Container>
@@ -29,6 +33,7 @@ const UserList = () => {
                 src={require('../../assets/icons/person-add.svg')}
                 className='fa mt-2'
                 alt='add user'
+                onClick={() => setshow(true)}
               />
             </Col>
           </Row>
@@ -64,6 +69,8 @@ const UserList = () => {
           <hr />
         </Fragment>
       ))}
+
+      <AddUser isOpen={show} toggle={() => setshow(false)} />
     </Container>
   );
 };
