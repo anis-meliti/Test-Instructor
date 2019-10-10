@@ -4,8 +4,13 @@ const GalerySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  path: {
+  title: {
     type: String
-  }
+  },
+  path: [
+    {
+      type: String
+    }
+  ]
 });
 module.exports = galery = mongoose.model('galery', GalerySchema);

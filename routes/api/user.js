@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
-const config = require('config');
+const Gallery = require('../../models/Gallery');
+
 // @route   POST api/user
 // @desc    Register route
 // @access  Public
@@ -28,6 +29,7 @@ router.post(
     if (!errors.isEmpty())
       return res.status(400).json({ errors: errors.array() });
     const { name, surName, birthYear, birthPlace } = req.body;
+
     try {
       user = new User({
         name,
@@ -59,6 +61,49 @@ router.get('/', async (req, res) => {
   } catch (error) {
     console.error(error.message);
     res.status(500).send('server error');
+  }
+});
+// @route    DELETE api/user
+// @desc     Delete user
+// @access   Private
+router.delete('/:id', async (req, res) => {
+  try {
+    // Remove user posts
+    await Gallery.findOneAndRemove({ gallery: req.params.id });
+
+    // Remove user
+    await User.findOneAndRemove({ _id: req.params.id });
+
+    res.json({ msg: 'User deleted' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+// @route    Alter api/user
+// @desc     Alter user
+// @access   Private
+router.put('/:id', async (req, res) => {
+  const { name, surName, birthYear, birthPlace } = req.body;
+  const userFields = {};
+  if (name) userFields.name = name;
+  if (surName) userFields.surName = surName;
+  if (birthYear) userFields.birthYear = birthYear;
+  if (birthPlace) userFields.birthPlace = birthPlace;
+
+  try {
+    // Alter user
+    await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: userFields },
+      { new: true, upsert: true }
+    );
+
+    res.json({ msg: 'User modified' });
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 

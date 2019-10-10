@@ -8,7 +8,7 @@ connectDB();
 // init middelWare
 app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) => res.send(res.json));
+// app.get('/', (req, res) => res.send(res.json));
 // Define Routes
 app.use('/', require('./routes/api/User'));
 
