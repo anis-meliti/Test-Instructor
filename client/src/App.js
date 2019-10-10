@@ -27,7 +27,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path='/' render={() => <UserList />} />
-          <Route exact path='/gallery' render={() => <GalleryPhoto />} />
+          <Route exact path={'/gallery/:id'} component={GalleryPhoto} />
         </Switch>
       </BrowserRouter>
     </Container>

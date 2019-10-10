@@ -1,7 +1,7 @@
 import { LOAD_GALLERY } from '../constants/actions-types';
 
 const initialState = {
-  galery: {
+  gallery: {
     user: '',
     title: '',
     path: ''
@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
     case LOAD_GALLERY:
       return {
         ...state,
-        users: payload,
+        gallery: payload,
         loading: false
       };
 

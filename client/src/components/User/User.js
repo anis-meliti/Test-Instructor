@@ -36,7 +36,7 @@ const User = ({ id, name, surName, birthPlace, birthYear }) => {
         <Col>
           <Row>
             <Col>
-              <Link to={`/gallery/`}>
+              <Link to={`/gallery/${id}`}>
                 <img
                   id={id}
                   style={{ cursor: 'pointer' }}

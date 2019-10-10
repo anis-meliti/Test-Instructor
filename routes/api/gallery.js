@@ -43,11 +43,14 @@ router.post(
 
 router.get('/:id', async (req, res) => {
   try {
-    const gallery = await User.find({ user: req.params.id }).populate(
+    const gallery = await Gallery.find({ user: req.params.id }).populate(
       'gallery',
       ['title', 'path']
     );
-    !user ? res.status(400).json({ msg: 'server error' }) : res.json(gallery);
+    console.log('TCL: req.params.id', req.params.id);
+    !gallery
+      ? res.status(400).json({ msg: 'server error' })
+      : res.json(gallery);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('server error');

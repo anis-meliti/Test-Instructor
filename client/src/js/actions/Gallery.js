@@ -3,9 +3,9 @@ import { LOAD_GALLERY } from '../constants/actions-types';
 
 //  GET the current user Profile
 
-export const getgallery = userId => async dispatch => {
+export const getgallery = id => async dispatch => {
   try {
-    const res = await axios.get(`/gallery/:${userId}`);
+    const res = await axios.get(`/gallery/${id}`);
     dispatch({
       type: LOAD_GALLERY,
       payload: res.data
