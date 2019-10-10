@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { LOAD_GALLERY } from '../constants/actions-types';
 
-//  GET the current user Profile
+//  GET the gallery
 
 export const getgallery = id => async dispatch => {
   try {
@@ -14,7 +14,7 @@ export const getgallery = id => async dispatch => {
     console.error(error);
   }
 };
-// Create a profile
+// Create a photo
 export const addPhoto = ({ userId, title, path }) => async dispatch => {
   const config = {
     headers: {
@@ -34,13 +34,12 @@ export const addPhoto = ({ userId, title, path }) => async dispatch => {
     console.error(error);
   }
 };
-// Delete user
-export const deleteUser = id => async dispatch => {
+// Delete photo
+export const deletePhoto = (id, userId) => async dispatch => {
   try {
     const res = await axios.delete(`/gallery/${id}`);
     console.log('TCL:  payload: res.data', res.data);
-
-    dispatch(getgallery(id));
+    dispatch(getgallery(userId));
   } catch (error) {
     console.error(error);
   }

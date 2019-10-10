@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Card, CardImg, CardBody, CardText, Col, Row } from 'reactstrap';
+import { Card, CardImg, CardBody, Col, Row } from 'reactstrap';
+import { useDispatch } from 'react-redux';
 
 import ShowPic from '../Modals/ShowPic';
+import { deletePhoto } from '../../js/actions/Gallery';
 
-const Photo = ({ title, path }) => {
+const Photo = ({ title, path, id, userId }) => {
+  const dispatch = useDispatch();
   const [pic, setpic] = useState({
     show: false,
     path: ''
@@ -13,6 +16,9 @@ const Photo = ({ title, path }) => {
       show: true,
       path: path
     });
+  };
+  const deletePic = e => {
+    dispatch(deletePhoto(e.target.id, userId));
   };
 
   return (
@@ -25,24 +31,25 @@ const Photo = ({ title, path }) => {
       <Card style={{ width: '20rem' }}>
         <CardImg top src={path} alt='...' style={{ height: '250px' }} />
         <CardBody>
-          <CardText>
-            <Row>
-              <Col>{title}</Col>
-              <Col className='ml-auto'>
-                <img
-                  src={require('../../assets/icons/eye.svg')}
-                  alt='eye '
-                  className='fa '
-                  onClick={showPic}
-                />
-                <img
-                  src={require('../../assets/icons/delete.svg')}
-                  alt='eye'
-                  className='fa ml-3'
-                />
-              </Col>
-            </Row>
-          </CardText>
+          <Row>
+            <Col>{title}</Col>
+            <Col className='ml-auto'>
+              <img
+                src={require('../../assets/icons/eye.svg')}
+                alt='eye '
+                className='fa '
+                onClick={showPic}
+              />
+              <img
+                userId={userId}
+                id={id}
+                src={require('../../assets/icons/delete.svg')}
+                alt='eye'
+                className='fa ml-3'
+                onClick={e => deletePic(e)}
+              />
+            </Col>
+          </Row>
         </CardBody>
       </Card>
     </Col>

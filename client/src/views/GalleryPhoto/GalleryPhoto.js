@@ -37,9 +37,13 @@ const GalleryPhoto = ({ match }) => {
 
       <Row>
         {gallery.map(photo => (
-          <>
-            <Photo title={photo.title} path={photo.path} key={photo._id} />
-          </>
+          <Photo
+            title={photo.title}
+            path={photo.path}
+            key={photo._id}
+            id={photo._id}
+            userId={userId}
+          />
         ))}
       </Row>
     </>

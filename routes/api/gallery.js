@@ -56,5 +56,16 @@ router.get('/:id', async (req, res) => {
     res.status(500).send('server error');
   }
 });
+router.delete('/:id', async (req, res) => {
+  try {
+    // Remove Galleryi
+    await Gallery.findOneAndRemove({ _id: req.params.id });
+
+    res.json({ msg: 'Image deleted' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
