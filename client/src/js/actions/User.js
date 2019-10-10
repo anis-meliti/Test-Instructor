@@ -19,7 +19,7 @@ export const getUsers = () => async dispatch => {
     console.error(error);
   }
 };
-// Update / create a profile
+// Create a profile
 export const addUser = ({
   name,
   surName,
@@ -39,6 +39,17 @@ export const addUser = ({
   });
   try {
     const res = await axios.post('/users', body, config);
+    console.log('TCL:  payload: res.data', res.data);
+
+    dispatch(getUsers());
+  } catch (error) {
+    console.error(error);
+  }
+};
+// Delete user
+export const deleteUser = id => async dispatch => {
+  try {
+    const res = await axios.delete(`/users/${id}`);
     console.log('TCL:  payload: res.data', res.data);
 
     dispatch(getUsers());

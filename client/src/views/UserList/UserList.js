@@ -60,14 +60,15 @@ const UserList = () => {
       {loading ? (
         <Spinner color='primary' />
       ) : (
-        users.map((user, i) => (
-          <Fragment key={i}>
+        users.map(user => (
+          <Fragment key={user._id}>
             <hr />{' '}
             <User
               name={user.name}
               surName={user.surName}
               birthPlace={user.birthPlace}
               birthYear={user.birthYear}
+              id={user._id}
             />
             <hr />
           </Fragment>
