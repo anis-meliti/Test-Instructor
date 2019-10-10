@@ -1,30 +1,12 @@
 import React, { Fragment } from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import { useSelector } from 'react-redux';
 import './UserList.css';
 
 import User from '../../components/User/User';
 
 const UserList = () => {
-  const user = [
-    {
-      name: 'john',
-      surName: 'Doe',
-      birthYear: '1989',
-      birthPlace: 'tunis'
-    },
-    {
-      name: 'john',
-      surName: 'Doe',
-      birthYear: '1989',
-      birthPlace: 'tunis'
-    },
-    {
-      name: 'john',
-      surName: 'Doe',
-      birthYear: '1989',
-      birthPlace: 'tunis'
-    }
-  ];
+  const users = useSelector(state => state.user.users);
   return (
     <Container>
       <Row>
@@ -70,7 +52,7 @@ const UserList = () => {
         </Col>
       </Row>
 
-      {user.map((user, i) => (
+      {users.map((user, i) => (
         <Fragment key={i}>
           <hr />{' '}
           <User
