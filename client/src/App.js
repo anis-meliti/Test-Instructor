@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { Container, Spinner } from 'reactstrap';
 import { useSelector } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import store from './js/store/index';
 import { getUsers } from './js/actions/User';
 import UserList from './views/UserList/UserList';
+import GalleryPhoto from './views/GalleryPhoto/GalleryPhoto';
 
 const App = () => {
   useEffect(() => {
@@ -21,7 +24,12 @@ const App = () => {
     />
   ) : (
     <Container className='card ml-auto mr-auto'>
-      <UserList />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' render={() => <UserList />} />
+          <Route exact path='/gallery' render={() => <GalleryPhoto />} />
+        </Switch>
+      </BrowserRouter>
     </Container>
   );
 };
